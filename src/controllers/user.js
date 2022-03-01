@@ -56,9 +56,9 @@ userRouter.post('/', async (req, res) => {
 });
 
 //Get user projects
-userRouter.get('/user/:id/projects', async (req, res) => {
+userRouter.get('/:id/projects', async (req, res) => {
     try {
-        const {user_id} = req.params.id;
+        const user_id = req.params.id;
         const projectModel = new Project();
         const userProjects = await projectModel.selectUserProjects(user_id);
         res.status(200).json({msg:'User projects retrieved successfully', userProjects});
@@ -68,7 +68,7 @@ userRouter.get('/user/:id/projects', async (req, res) => {
 });
 
 //Update a user
-userRouter.patch('/user/:id', async (req, res) => {
+userRouter.patch('/:id', async (req, res) => {
     try {
         const user_id = req.params.id;
         const {first_name, last_name} = req.body;
@@ -81,7 +81,7 @@ userRouter.patch('/user/:id', async (req, res) => {
 });
 
 //Delete a user
-userRouter.delete('/user/:id', async (req, res) => {
+userRouter.delete('/:id', async (req, res) => {
     try {
         const user_id = req.params.id;
         const userModel = new User();
